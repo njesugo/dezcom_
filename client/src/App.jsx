@@ -11,9 +11,14 @@ import Cart from "./pages/Cart";
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import CheckoutForm from "./CheckoutForm";
+import Success from "./pages/Success";
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext"; // Importer AuthContext
 
 function App() {
-  const user = true;
+
+  const { user } = useContext(AuthContext); // Utiliser AuthContext pour obtenir l'utilisateur
+
   return (
     <main>
       <BrowserRouter>

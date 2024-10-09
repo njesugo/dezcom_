@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
-import Announcement from "../components/Sale";
+import Sale from "../components/Sale";
 import Products from "../components/Products";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
@@ -55,7 +55,7 @@ const ProductList = () => {
   return (
     <Container>
       <Navbar />
-      <Announcement />
+      <Sale />
       <Title>{cat}</Title>
       <FilterContainer>
         <Filter>
