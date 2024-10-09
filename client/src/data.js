@@ -16,7 +16,7 @@ export const sliderItems = [
     {
       id: 3,
       img: "https://i.ibb.co/cXFnLLV/3.png",
-      title: "LOUNGEWEAR LOVE",
+      title: "ENJOY SUV",
       desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
       bg: "fbf0f4",
     },
@@ -27,19 +27,19 @@ export const sliderItems = [
       id: 1,
       img: "https://i.ibb.co/LSK3tvS/jeep.jpg",
       title: "JEEP SUV!",
-      cat:"women"
+      cat:"JEEP"
     },
     {
       id: 2,
       img: "https://i.ibb.co/brwdrWH/bmw.jpg",
       title: "BMW",
-      cat:"coat"
+      cat:"BMW"
     },
     {
       id: 3,
       img: "https://i.ibb.co/4f2tkYn/kia.jpg",
       title: "KIA SUV",
-      cat:"jeans"
+      cat:"KIA"
     },
   ];
 
