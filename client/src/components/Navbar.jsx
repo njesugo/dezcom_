@@ -52,7 +52,7 @@ const Navbar = () => {
       <Wrapper>
         <Left>
           <Link to="/">
-            <Logo>MyStore</Logo>
+            <Logo>DEZCOM</Logo>
           </Link>
         </Left>
         <Center>

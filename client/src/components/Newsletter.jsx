@@ -1,92 +1,64 @@
-import {
-  FavoriteBorderOutlined,
-  SearchOutlined,
-  ShoppingCartOutlined,
-} from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { Send } from "@material-ui/icons";
 import styled from "styled-components";
-
-const Info = styled.div`
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.2);
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.5s ease;
-  cursor: pointer;
-`;
+import { mobile } from "../responsive";
 
 const Container = styled.div`
-  flex: 1;
-  margin: 5px;
-  min-width: 280px;
-  height: 350px;
+  height: 60vh;
+  background-color: #fcf5f5;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f5fbfd;
-  position: relative;
-
-  &:hover ${Info}{
-    opacity: 1;
-  }
+  flex-direction: column;
+`;
+const Title = styled.h1`
+  font-size: 70px;
+  margin-bottom: 20px;
 `;
 
-const Circle = styled.div`
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: white;
-  position: absolute;
+const Desc = styled.div`
+  font-size: 24px;
+  font-weight: 300;
+  margin-bottom: 20px;
+  ${mobile({ textAlign: "center" })}
+
 `;
 
-const Image = styled.img`
-  height: 75%;
-  z-index: 2;
-`;
-
-const Icon = styled.div`
-  width: 40px;
+const InputContainer = styled.div`
+  width: 50%;
   height: 40px;
-  border-radius: 50%;
   background-color: white;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  transition: all 0.5s ease;
-  &:hover {
-    background-color: #e9f5f5;
-    transform: scale(1.1);
-  }
+  justify-content: space-between;
+  border: 1px solid lightgray;
+  ${mobile({ width: "80%" })}
 `;
 
-const Product = ({ item }) => {
+const Input = styled.input`
+  border: none;
+  flex: 8;
+  padding-left: 20px;
+`;
+
+const Button = styled.button`
+  flex: 1;
+  border: none;
+  background-color: teal;
+  color: white;
+`;
+
+const Newsletter = () => {
   return (
     <Container>
-      <Circle />
-      <Image src={item.img} />
-      <Info>
-        <Icon>
-          <ShoppingCartOutlined />
-        </Icon>
-        <Icon>
-          <Link to={`/product/${item._id}`}>
-          <SearchOutlined />
-          </Link>
-        </Icon>
-        <Icon>
-          <FavoriteBorderOutlined />
-        </Icon>
-      </Info>
+      <Title>Newsletter</Title>
+      <Desc>Get timely updates from your favorite products.</Desc>
+      <InputContainer>
+        <Input placeholder="Your email" />
+        <Button>
+          <Send />
+        </Button>
+      </InputContainer>
     </Container>
   );
 };
 
-export default Product;
+export default Newsletter;
