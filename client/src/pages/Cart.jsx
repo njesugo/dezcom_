@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useCart } from "../context"; // Importer le hook du contexte
 import { userRequest } from "../requestMethods"; // Ajoutez cette ligne pour importer userRequest
+import NearbyPickupPoints from "../components/NearbyPickupPoints";
 
 const KEY = process.env.REACT_APP_STRIPE;
 
@@ -160,9 +161,13 @@ const Button = styled.button`
   font-weight: 600;
 `;
 
+const PPoints = styled.div`
+margin: 30px 0px;
+`
 const Cart = () => {
   const { state, dispatch } = useCart(); // Accéder à l'état du panier via le contexte
   const [stripeToken, setStripeToken] = useState(null);
+  const [selectedPoint, setSelectedPoint] = useState(null)
   const history = useNavigate();
 
   const onToken = (token) => {
@@ -233,6 +238,9 @@ const Cart = () => {
               </Product>
             ))}
             <Hr />
+            <PPoints>
+              <NearbyPickupPoints setSelectedPoint={setSelectedPoint} />
+            </PPoints>
           </Info>
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>

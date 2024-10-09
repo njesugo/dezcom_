@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-
 const { resolve } = require("path");
 
 const userRoute = require("./src/routes/user");
@@ -9,6 +8,7 @@ const authRoute = require("./src/routes/auth");
 const productRoute = require("./src/routes/product");
 const cartRoute = require("./src/routes/cart");
 const orderRoute = require("./src/routes/order");
+const geolocRoute = require("./src/routes/geoloc")
 
 const cors = require("cors");
 
@@ -28,6 +28,7 @@ app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
 app.use("/api/carts", cartRoute);
 app.use("/api/orders", orderRoute);
+app.use("/api/geoloc", geolocRoute);
 
 mongoose
   .connect(process.env.MONGO_URL)
@@ -41,6 +42,7 @@ app.get("/", (req, res) => {
   const path = resolve(process.env.STATIC_DIR + "/index.html");
   res.sendFile(path);
 });
+
 
 app.get("/config", (req, res) => {
   res.send({
