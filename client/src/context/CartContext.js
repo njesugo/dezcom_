@@ -9,7 +9,7 @@ const initialState = {
 };
 
 // Créer le contexte
-const CartContext = createContext();
+export const CartContext = createContext();
 
 // Réducteur pour gérer les actions du panier
 const cartReducer = (state, action) => {
