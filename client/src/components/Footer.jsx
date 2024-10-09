@@ -110,16 +110,18 @@ const Footer = () => {
       <Center>
         <Title>Useful Links</Title>
         <List>
+          
+        
+          <ListItem>BMW</ListItem>
           <ListItem>Home</ListItem>
+          <ListItem>Tesla</ListItem>
           <ListItem>Cart</ListItem>
-          <ListItem>Man Fashion</ListItem>
-          <ListItem>Woman Fashion</ListItem>
-          <ListItem>Accessories</ListItem>
-          <ListItem>My Account</ListItem>
+          <ListItem>JEEP</ListItem>
+          {/* <ListItem>My Account</ListItem>
           <ListItem>Order Tracking</ListItem>
           <ListItem>Wishlist</ListItem>
           <ListItem>Wishlist</ListItem>
-          <ListItem>Terms</ListItem>
+          <ListItem>Terms</ListItem> */}
         </List>
       </Center>
       <Right>

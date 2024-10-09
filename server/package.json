@@ -4,23 +4,25 @@
   "description": "Stripe payment sample.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write \"**/*.{js,jsx}\""
   },
   "author": "stripe-samples",
   "license": "ISC",
   "dependencies": {
+    "@stripe/react-stripe-js": "^2.8.1",
+    "@stripe/stripe-js": "^4.7.0",
     "body-parser": "^1.19.0",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "stripe": "^8.191.0",
     "cors": "^2.8.5",
     "crypto-js": "^4.2.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.9.0",
     "mongoose": "^8.7.0",
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.7",
+    "stripe": "^8.191.0"
   },
   "devDependencies": {
     "prettier": "^2.7.1"

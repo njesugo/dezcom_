@@ -1,6 +1,7 @@
 // src/pages/Cart.js
 import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import Sale from "../components/Sale";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
@@ -199,8 +200,12 @@ const Cart = () => {
             <TopText>Shopping Bag({state.quantity})</TopText> {/* Afficher la quantité */}
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
-          <TopButton type="filled">CHECKOUT NOW</TopButton>
+          {state.products.length!=0 &&
+          <Link to="/checkout">
+            <TopButton type="filled">CHECKOUT NOW</TopButton>
+          </Link>}
         </Top>
+        {state.products.length!=0 &&
         <Bottom>
           <Info>
             {state.products.map((product) => (
@@ -252,20 +257,8 @@ const Cart = () => {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>$ {state.total}</SummaryItemPrice>
             </SummaryItem>
-            <StripeCheckout
-              name="DEZCOM Shop"
-              image="https://avatars.githubusercontent.com/u/1486366?v=4"
-              billingAddress
-              shippingAddress
-              description={`Your total is $${state.total}`} // Utilisation du total du contexte
-              amount={state.total * 100}
-              token={onToken}
-              stripeKey={KEY}
-            >
-              <Button>CHECKOUT NOW</Button>
-            </StripeCheckout>
           </Summary>
-        </Bottom>
+        </Bottom>}
       </Wrapper>
       <Footer />
     </Container>

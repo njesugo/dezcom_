@@ -7,7 +7,7 @@
   --radius: 3px;
 }
 
-body {
+.checkout-form {
   padding: 20px;
   font-family: 'Raleway';
   display: flex;
@@ -16,20 +16,16 @@ body {
   color: var(--dark-terminal-color);
 }
 
-main {
+.checkout-form main {
   width: 480px;
 }
 
-form > * {
+.checkout-form form > * {
   margin: 10px 0;
 }
 
-button {
+.checkout-form button {
   background-color: var(--accent-color);
-}
-
-button {
-  background: var(--accent-color);
   border-radius: var(--radius);
   color: white;
   border: 0;
@@ -40,43 +36,46 @@ button {
   transition: all 0.2s ease;
   display: block;
 }
-button:hover {
+.checkout-form button:hover {
   filter: contrast(115%);
 }
-button:active {
+.checkout-form button:active {
   transform: translateY(0px) scale(0.98);
   filter: brightness(0.9);
 }
-button:disabled {
+.checkout-form button:disabled {
   opacity: 0.5;
   cursor: none;
 }
 
-input, select {
+.checkout-form input,
+.checkout-form select {
   display: block;
   font-size: 1.1em;
   width: 100%;
   margin-bottom: 10px;
 }
 
-label {
+.checkout-form label {
   display: block;
 }
 
-a {
+.checkout-form a {
   color: var(--accent-color);
   font-weight: 900;
 }
 
-small {
+.checkout-form small {
   font-size: .6em;
 }
 
-fieldset, input, select {
+.checkout-form fieldset,
+.checkout-form input,
+.checkout-form select {
   border: 1px solid #efefef;
 }
 
-#payment-form {
+.checkout-form #payment-form {
   border: #F6F9FC solid 1px;
   border-radius: var(--radius);
   padding: 20px;
@@ -84,7 +83,7 @@ fieldset, input, select {
   box-shadow: 0 30px 50px -20px rgb(50 50 93 / 25%), 0 30px 60px -30px rgb(0 0 0 / 30%);
 }
 
-#messages {
+.checkout-form #messages {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New';
   display: none; /* hide initially, then show once the first message arrives */
   background-color: #0A253C;
@@ -92,5 +91,5 @@ fieldset, input, select {
   padding: 20px;
   margin: 20px 0;
   border-radius: var(--radius);
-  font-size:0.7em;
+  font-size: 0.7em;
 }

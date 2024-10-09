@@ -3,6 +3,8 @@ import { useState, useContext } from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { AuthContext } from "../context/AuthContext"; // Assurez-vous que ce chemin est correct
+import { useNavigate } from "react-router";
+
 
 const Container = styled.div`
   width: 100vw;
@@ -11,7 +13,7 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+    url("https://i.ibb.co/9b5dgCK/bg.jpg")
       center;
   background-size: cover;
   display: flex;
@@ -72,10 +74,15 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { login, isFetching, error } = useContext(AuthContext); // Utiliser le contexte
-
+  const navigate = useNavigate();
+  
   const handleClick = (e) => {
     e.preventDefault();
     login(username, password); // Appel de la méthode login du contexte
+  };
+  
+  const handleRegisterClick = () => {
+    navigate("/register"); // Navigate to the register page
   };
 
   return (
@@ -96,8 +103,8 @@ const Login = () => {
             LOGIN
           </Button>
           {error && <Error>Something went wrong...</Error>}
-          <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-          <Link>CREATE A NEW ACCOUNT</Link>
+          {/* <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link> */}
+          <Link onClick={handleRegisterClick}>CREATE A NEW ACCOUNT</Link>
         </Form>
       </Wrapper>
     </Container>
