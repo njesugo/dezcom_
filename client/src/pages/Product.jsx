@@ -1,14 +1,12 @@
 import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
-import Announcement from "../components/Sale";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods";
-import { useCart } from "../context/CartContext"; // Importer le hook du CartContext
+import { useCart } from "../context/CartContext"; 
 
 const Container = styled.div``;
 
@@ -155,7 +153,7 @@ const Product = () => {
   return (
     <Container>
       <Navbar />
-      <Announcement />
+      {/* <Announcement /> */}
       <Wrapper>
         <ImgContainer>
           <Image src={product.img} />
@@ -190,7 +188,6 @@ const Product = () => {
           </AddContainer>
         </InfoContainer>
       </Wrapper>
-      <Newsletter />
       <Footer />
     </Container>
   );

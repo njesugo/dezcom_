@@ -16,6 +16,8 @@ const authReducer = (state, action) => {
     case "LOGIN_FAILURE":
     case "REGISTER_FAILURE":
       return { ...state, isFetching: false, error: true };
+    case "LOGOUT": // Gérer la déconnexion
+    return { ...state, user: null, isFetching: false, error: false };
     default:
       return state;
   }
@@ -41,6 +43,7 @@ export const AuthContextProvider = ({ children }) => {
         body: JSON.stringify({ username, password }),
       });
       const data = await res.json();
+      localStorage.setItem("persist:root",JSON.stringify(data))
       dispatch({ type: "LOGIN_SUCCESS", payload: data });
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE" });
@@ -72,6 +75,10 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
   
+  const logout = () => {
+    localStorage.removeItem("persist:root"); // Supprimer les données du localStorage
+    dispatch({ type: "LOGOUT" }); // Mettre à jour le state pour déconnecter l'utilisateur
+  };
 
   return (
     <AuthContext.Provider value={{ ...state, login, register }}>

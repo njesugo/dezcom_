@@ -1,3 +1,8 @@
+In very short words
+
+go to : /client
+run : npm start
+
 # Accept a payment examples in React for Payment Element
 
 ## How to run locally

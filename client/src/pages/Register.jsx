@@ -1,4 +1,3 @@
-// src/pages/Register.jsx
 import { useState, useContext } from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
@@ -68,27 +67,53 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  
+  const [formError, setFormError] = useState(""); // State pour gérer les erreurs de validation
+
   const { register, isFetching, error } = useContext(AuthContext); // Utiliser le contexte
   const navigate = useNavigate(); // Initialize useNavigate
 
+  // Validation de l'email avec RegEx
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleRegisterClick = async (e) => {
     e.preventDefault();
-    if (password === confirmPassword) {
-      try {
-        await register({
-          name,
-          lastName,
-          username,
-          email,
-          password,
-        });
-        navigate("/login"); // Redirige vers la page de connexion après un enregistrement réussi
-      } catch (err) {
-        console.error(err); // Gérer les erreurs ici si nécessaire
-      }
-    } else {
-      alert("Passwords do not match!");
+
+    // Réinitialiser le message d'erreur du formulaire
+    setFormError("");
+
+    // Vérifier que tous les champs sont remplis
+    if (!name || !lastName || !username || !email || !password || !confirmPassword) {
+      setFormError("All fields are required.");
+      return;
+    }
+
+    // Vérifier que l'email est valide
+    if (!validateEmail(email)) {
+      setFormError("Please enter a valid email address.");
+      return;
+    }
+
+    // Vérifier que les mots de passe correspondent
+    if (password !== confirmPassword) {
+      setFormError("Passwords do not match.");
+      return;
+    }
+
+    // Si toutes les validations sont passées, procéder à l'enregistrement
+    try {
+      await register({
+        name,
+        lastName,
+        username,
+        email,
+        password,
+      });
+      navigate("/login"); // Rediriger vers la page de connexion après un enregistrement réussi
+    } catch (err) {
+      console.error(err); // Gérer les erreurs ici si nécessaire
     }
   };
 
@@ -118,6 +143,9 @@ const Register = () => {
           <Button onClick={handleRegisterClick} disabled={isFetching}>
             CREATE
           </Button>
+          {/* Affichage des erreurs de validation */}
+          {formError && <Error>{formError}</Error>}
+          {/* Affichage de l'erreur de contexte si elle existe */}
           {error && <Error>Something went wrong...</Error>}
         </Form>
       </Wrapper>

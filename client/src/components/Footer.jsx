@@ -108,7 +108,7 @@ const Footer = () => {
         </SocialContainer>
       </Left>
       <Center>
-        <Title>Useful Links</Title>
+        <Title></Title>
         <List>
           
         
@@ -117,20 +117,15 @@ const Footer = () => {
           <ListItem>Tesla</ListItem>
           <ListItem>Cart</ListItem>
           <ListItem>JEEP</ListItem>
-          {/* <ListItem>My Account</ListItem>
-          <ListItem>Order Tracking</ListItem>
-          <ListItem>Wishlist</ListItem>
-          <ListItem>Wishlist</ListItem>
-          <ListItem>Terms</ListItem> */}
         </List>
       </Center>
       <Right>
         <Title>Contact</Title>
         <ContactItem>
-          <Room style={{marginRight:"10px"}}/> 622 Dixie Path , South Tobinchester 98336
+          <Room style={{marginRight:"10px"}}/> 22 Rue Dupont, 75000 Paris
         </ContactItem>
         <ContactItem>
-          <Phone style={{marginRight:"10px"}}/> +1 234 56 78
+          <Phone style={{marginRight:"10px"}}/> +33 6 06 89 07 56
         </ContactItem>
         <ContactItem>
           <MailOutline style={{marginRight:"10px"}} /> contact@dezcom.dev

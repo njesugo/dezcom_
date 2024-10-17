@@ -1,10 +1,8 @@
-// src/pages/Login.jsx
 import { useState, useContext } from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { AuthContext } from "../context/AuthContext"; // Assurez-vous que ce chemin est correct
 import { useNavigate } from "react-router";
-
 
 const Container = styled.div`
   width: 100vw;
@@ -13,8 +11,7 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://i.ibb.co/9b5dgCK/bg.jpg")
-      center;
+    url("https://i.ibb.co/9b5dgCK/bg.jpg") center;
   background-size: cover;
   display: flex;
   align-items: center;
@@ -53,10 +50,6 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
   margin-bottom: 10px;
-  &:disabled {
-    color: green;
-    cursor: not-allowed;
-  }
 `;
 
 const Link = styled.a`
@@ -73,16 +66,28 @@ const Error = styled.span`
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { login, isFetching, error } = useContext(AuthContext); // Utiliser le contexte
+  const [formError, setFormError] = useState(""); // Nouveau state pour gérer les erreurs de formulaire
+  const { login, isFetching, error } = useContext(AuthContext);
   const navigate = useNavigate();
-  
+
   const handleClick = (e) => {
     e.preventDefault();
-    login(username, password); // Appel de la méthode login du contexte
+
+    // Réinitialiser le message d'erreur du formulaire
+    setFormError("");
+
+    // Vérifier si les champs sont remplis
+    if (!username || !password) {
+      setFormError("Please fill in both username and password.");
+      return;
+    }
+
+    // Appel de la méthode login si les champs sont valides
+    login(username, password);
   };
-  
+
   const handleRegisterClick = () => {
-    navigate("/register"); // Navigate to the register page
+    navigate("/register");
   };
 
   return (
@@ -92,18 +97,22 @@ const Login = () => {
         <Form>
           <Input
             placeholder="username"
+            value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
           <Input
             placeholder="password"
             type="password"
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button onClick={handleClick} disabled={isFetching}>
+          <Button onClick={handleClick}>
             LOGIN
           </Button>
+          {/* Affichage de l'erreur si les champs ne sont pas remplis */}
+          {formError && <Error>{formError}</Error>}
+          {/* Afficher l'erreur de login si une erreur survient dans le contexte d'authentification */}
           {error && <Error>Something went wrong...</Error>}
-          {/* <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link> */}
           <Link onClick={handleRegisterClick}>CREATE A NEW ACCOUNT</Link>
         </Form>
       </Wrapper>

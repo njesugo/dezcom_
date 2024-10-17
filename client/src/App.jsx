@@ -8,6 +8,7 @@ import ProductList from "./pages/ProductList";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
+import Orders from "./pages/Orders";
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import CheckoutForm from "./CheckoutForm";
@@ -21,7 +22,11 @@ import { loadStripe } from "@stripe/stripe-js";
 const stripePromise = loadStripe("pk_test_51Q624iRrwERZ54J8tuLum6IK0hbbyqHLGMHlVkint5FiYE7aHa9i8GaE6bhe4KzBqcF5dVVdVvLp4QKpNuFqUU0400Af0xhzE0"); // Replace with your actual key
 
 function App() {
-  const { user } = useContext(AuthContext); // Use AuthContext to get the user
+  const { user, logout } = useContext(AuthContext); // Utiliser le contexte
+
+  const handleLogout = () => {
+    logout(); // Appel de la fonction logout
+  };
 
   return (
     <main>
@@ -42,6 +47,7 @@ function App() {
             />
             <Route path="/checkout" element={<Payment />} />
             <Route path="/completion" element={<Completion />} />
+            <Route path="/orders" element={<Orders />} />
           </Routes>
       </BrowserRouter>
     </main>

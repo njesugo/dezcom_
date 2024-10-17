@@ -2,7 +2,7 @@
 import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Sale from "../components/Sale";
+// import Sale from "../components/Sale";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useCart } from "../context"; // Importer le hook du contexte
 import { userRequest } from "../requestMethods"; // Ajoutez cette ligne pour importer userRequest
-
+import NearbyPickupPoints from "../components/NearbyPickupPoints";
 const KEY = process.env.REACT_APP_STRIPE;
 
 const Container = styled.div``;
@@ -161,10 +161,22 @@ const Button = styled.button`
   font-weight: 600;
 `;
 
+const PPoints = styled.div`
+margin: 30px 0px;
+`
+
 const Cart = () => {
   const { state, dispatch } = useCart(); // Accéder à l'état du panier via le contexte
   const [stripeToken, setStripeToken] = useState(null);
   const history = useNavigate();
+  const [selectedPoint, setSelectedPoint] = useState(null)
+  const { setPickupPointId } = useCart();
+
+  useEffect(()=>{
+    if(selectedPoint) {
+      setPickupPointId(selectedPoint._id)
+    }
+  },[selectedPoint])
 
   const onToken = (token) => {
     setStripeToken(token);
@@ -191,14 +203,14 @@ const Cart = () => {
   return (
     <Container>
       <Navbar />
-      <Sale />
+      {/* <Sale /> */}
       <Wrapper>
-        <Title>YOUR BAG</Title>
+        <Title>YOUR CART</Title>
         <Top>
           <TopButton>CONTINUE SHOPPING</TopButton>
           <TopTexts>
-            <TopText>Shopping Bag({state.quantity})</TopText> {/* Afficher la quantité */}
-            <TopText>Your Wishlist (0)</TopText>
+            <TopText>Shopping Cart({state.quantity})</TopText> {/* Afficher la quantité */}
+            <TopText>Your Favorite (0)</TopText>
           </TopTexts>
           {state.products.length!=0 &&
           <Link to="/checkout">
@@ -238,6 +250,9 @@ const Cart = () => {
               </Product>
             ))}
             <Hr />
+            <PPoints>
+              <NearbyPickupPoints setSelectedPoint={setSelectedPoint} />
+            </PPoints>
           </Info>
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>

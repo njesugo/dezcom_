@@ -1,8 +1,9 @@
 // src/components/Navbar.js
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useCart } from "../context"; // Importer le hook du contexte
+import { AuthContext } from "../context/AuthContext"; // Importer le contexte AuthContext
 
 const Container = styled.div`
   height: 60px;
@@ -46,6 +47,13 @@ const MenuItem = styled.div`
 
 const Navbar = () => {
   const { state } = useCart(); // Accéder à l'état du panier via le contexte
+  const { user, logout } = useContext(AuthContext); // Accéder à l'état d'authentification
+  const navigate = useNavigate(); // Initialiser useNavigate
+  
+  const handleLogout = () => {
+    logout(); // Appeler la fonction de déconnexion
+    navigate("/"); // Rediriger vers la page d'accueil
+  };
 
   return (
     <Container>
@@ -64,9 +72,15 @@ const Navbar = () => {
               Cart ({state.quantity}) {/* Afficher la quantité d'articles dans le panier */}
             </Link>
           </MenuItem>
-          <MenuItem>
-            <Link to="/login">Login</Link>
-          </MenuItem>
+          {user ? ( // Vérifier si l'utilisateur est connecté
+            <MenuItem onClick={logout}>
+              Logout
+            </MenuItem>
+          ) : (
+            <MenuItem>
+              <Link to="/login">Login</Link>
+            </MenuItem>
+          )}
         </Right>
       </Wrapper>
     </Container>
